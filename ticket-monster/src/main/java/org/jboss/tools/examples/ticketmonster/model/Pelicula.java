@@ -1,9 +1,21 @@
 package org.jboss.tools.examples.ticketmonster.model;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+@Entity
 public class Pelicula extends Producto {
 
+	@NotNull
 	private String director; 
+	
+	@Min(1)
 	private Integer duracion;
+	
+	@ManyToOne
+	@NotNull
 	private Genero genero;
 
 

@@ -2,12 +2,41 @@ package org.jboss.tools.examples.ticketmonster.model;
 
 import java.math.BigDecimal;
 
-public class Producto {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.NaturalId;
+
+@Entity
+@Table(name="PRODUCTO")
+@Inheritance(strategy=InheritanceType.JOINED)
+public abstract class Producto {
+	
+	@Id
+	@GeneratedValue
+	private Long id;
+	
+	@NaturalId
 	private Integer codigo;
+	
 	private String descripcion;
+	
+	@NotNull
 	private String titulo; 
+	
+	
 	private String imagen;
 	
+	@NotNull
+	@Digits(integer=6, fraction=2)
+	@DecimalMin("0.01")
 	private BigDecimal precio;
 
 	public BigDecimal getPrecio() {
@@ -50,6 +79,35 @@ public class Producto {
 
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Producto other = (Producto) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
 	}
 
 

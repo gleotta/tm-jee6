@@ -2,11 +2,25 @@ package org.jboss.tools.examples.ticketmonster.model;
 
 import java.math.BigDecimal;
 
-public class Software extends Producto {
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 
+
+@Entity
+public class Software extends Producto {
+	
+	@NotNull
 	private String autor;
+		
 	private String licencia;
+	
+	@DecimalMin("0.01")
 	private BigDecimal tamanio;
+	
+	@ManyToOne
+	@NotNull
 	private CategoriaSoftware categoria;
 
 	
