@@ -24,7 +24,7 @@ public abstract class Producto {
 	private Long id;
 	
 	@NaturalId
-	private Integer codigo;
+	private String codigo;
 	
 	private String descripcion;
 	
@@ -47,11 +47,11 @@ public abstract class Producto {
 		this.precio = precio;
 	}
 
-	public Integer getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(Integer codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 

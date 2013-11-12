@@ -143,12 +143,7 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
+
         </dependency>
 
         <!-- Import the JSF API, we use provided scope as the API is included in 
@@ -166,7 +161,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-jpamodelgen</artifactId>
-            <scope>provided</scope>
+            <scope>test</scope>
         </dependency>
 
         <!-- Annotation processor that raising compilation errors whenever constraint 
@@ -174,7 +169,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator-annotation-processor</artifactId>
-            <scope>provided</scope>
+            <scope>test</scope>
         </dependency>
 
         <!-- Needed for running tests (you may also use TestNG) -->
@@ -204,6 +199,19 @@
         	<artifactId>hibernate-core</artifactId>
         	<scope>provided</scope>
         </dependency>
+        
+        <dependency>
+        	<groupId>mysql</groupId>
+        	<artifactId>mysql-connector-java</artifactId>
+        	<version>5.1.26</version>
+        	<scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<scope>provided</scope>
+		</dependency>
     </dependencies>
 
     <build>

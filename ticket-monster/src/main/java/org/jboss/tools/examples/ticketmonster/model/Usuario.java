@@ -33,7 +33,7 @@ public class Usuario {
 	private String email;
 	
 	@NotNull	
-	private String contraseña;
+	private String contrasenia;
 	
 	@NotNull
 	@Past
@@ -83,13 +83,7 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public String getContraseña() {
-		return contraseña;
-	}
-
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
-	}
+	
 
 	public Long getId() {
 		return id;
@@ -118,6 +112,14 @@ public class Usuario {
 		} else if (!email.equals(other.email))
 			return false;
 		return true;
+	}
+
+	public String getContrasenia() {
+		return contrasenia;
+	}
+
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
 	}
 
 	
