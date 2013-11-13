@@ -35,13 +35,13 @@ public class TestModel {
 			// Incio transaccion
 			em.getTransaction().begin();
 //
-//			cargarCategorias();
+			cargarCategorias();
 //
-//			cargarProductos();
+			cargarProductos();
 //
-//			cargarUsuarios();
+			cargarUsuarios();
 //
-//			cargarCompras();
+			cargarCompras();
 
 			em.getTransaction().commit();
 

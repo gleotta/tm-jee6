@@ -23,15 +23,29 @@
     xsi:schemaLocation="http://www.jboss.org/ironjacamar/schema http://docs.jboss.org/ironjacamar/schema/datasources_1_0.xsd">
     <!-- The datasource is bound into JNDI at this location. We reference 
         this in META-INF/persistence.xml -->
-    <datasource jndi-name="java:jboss/datasources/ticket-monsterDS"
+<!--     <datasource jndi-name="java:jboss/datasources/ticket-monsterDS" -->
+<!--         pool-name="ticket-monster" enabled="true" -->
+<!--         use-java-context="true"> -->
+<!--         <connection-url>jdbc:h2:mem:ticket-monster;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1</connection-url> -->
+<!--         <driver>h2</driver> -->
+<!--         <security> -->
+<!--             <user-name>sa</user-name> -->
+<!--             <password>sa</password> -->
+<!--         </security> -->
+<!--     </datasource> -->
+    
+      <datasource jndi-name="java:jboss/datasources/ticket-monsterDS"
         pool-name="ticket-monster" enabled="true"
-        use-java-context="true">
-        <connection-url>jdbc:h2:mem:ticket-monster;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1</connection-url>
-        <driver>h2</driver>
-        <security>
-            <user-name>sa</user-name>
-            <password>sa</password>
-        </security>
-    </datasource>
+        use-java-context="true">                
+         <connection-url>jdbc:mysql://localhost:3306/ticket-monster</connection-url>
+                    <driver>mysql-connector-java-5.1.12-bin.jar</driver>
+                    <security>
+                        <user-name>root</user-name>
+                        <password>german</password>
+                    </security>
+                    <validation>
+                        <check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+                    </validation>
+                </datasource>
 </datasources>
  
