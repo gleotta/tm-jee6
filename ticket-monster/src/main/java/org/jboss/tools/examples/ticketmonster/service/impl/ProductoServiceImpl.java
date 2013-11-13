@@ -43,14 +43,15 @@ public class ProductoServiceImpl implements ProductosService {
 				producto = Pelicula.class.getSimpleName();
 		else 
 				producto = Producto.class.getSimpleName();
+		if (titulo == null)
+			titulo = "";
 		
-
 		List<Producto> ret = em
 				.createQuery(
 						"select p from "
 								+ producto
 								+ " p "
-								+ "where lower(p.titulo) like :titulo or :titulo is null"
+								+ "where lower(p.titulo) like :titulo or :titulo = ''"
 								)
 				.setParameter("titulo", "%"+titulo.toLowerCase()+"%")
 				.getResultList();
