@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -11,11 +12,14 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.validator.constraints.Email;
 
 @Entity
 @Table(name="USUARIO")
+@JsonIgnoreProperties(ignoreUnknown=true,value="compras")
 public class Usuario {
 	
 	@Id
@@ -39,7 +43,7 @@ public class Usuario {
 	@Past
 	private Date fechaNacimiento;
 	
-	@OneToMany
+	@OneToMany(mappedBy="usuario")
 	private List<Compra> compras;
 	
 	public Date getFechaNacimiento() {
@@ -49,7 +53,6 @@ public class Usuario {
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
-
 
 	public List<Compra> getCompras() {
 		return compras;
