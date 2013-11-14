@@ -36,8 +36,9 @@
 		<link rel="shortcut icon" href="favicon.ico" />
 		<script src="src/assets/js/angular.min.js"></script>
 		<script src="src/app.js"></script>
-		<script src="src/controllers/DashboardController.js"></script>
 		<script src="src/controllers/ProductListController.js"></script>
+		<script src="src/controllers/LoginController.js"></script>
+		
 	</head>
 	<!-- end: HEAD -->
 	<!-- start: BODY -->
@@ -46,7 +47,7 @@
 		<div class="navbar navbar-inverse navbar-fixed-top">
 			<!-- start: TOP NAVIGATION CONTAINER -->
 			<div class="container">
-				<div class="navbar-header">
+				<div class="navbar-header" ng-controller="LoginController">
 					<!-- start: RESPONSIVE MENU TOGGLER -->
 					
 					<!-- end: RESPONSIVE MENU TOGGLER -->
@@ -55,10 +56,10 @@
 						<i class="clip-clip"></i> Ticket Monster
 					</a>
 						<div align="right">
-							<input id="search" type="text" placeholder="User" ng-model="query">
-							<input id="search" type="text" placeholder="Password" ng-model="query">
+							<input id="search" type="text" placeholder="User" ng-model="user"></input>
+							<input id="search" type="password" placeholder="Password" ng-model="password"></input>
 							<span class="input-group-btn">
-								<button type="button" class="btn btn-teal" ng-click="buscarWs()">
+								<button type="button" class="btn btn-teal" ng-click="login()">
 									<i>Login</i>
 								</button> 
 							</span>
