@@ -15,5 +15,7 @@ public interface CompraService {
 	public List<Compra> obtenerComprasProducto(String codigoProd);
 	
 	public void crearCompra(String username, String producto, BigDecimal monto) throws BusinessException;
+	
+	public void crearCompra(Compra c) throws BusinessException;
 
 }
