@@ -1,8 +1,10 @@
 package org.jboss.tools.examples.ticketmonster.service.impl;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
 
 import org.jboss.tools.examples.ticketmonster.exceptions.BusinessException;
@@ -13,10 +15,14 @@ import org.jboss.tools.examples.ticketmonster.service.CarritoService;
 
 @Stateful
 public class CarritoServiceImpl implements CarritoService {
+	
+	private List<Producto> productos;
 
-	public CarritoServiceImpl() {
-		// TODO Auto-generated constructor stub
+	@PostConstruct
+	public void init() {
+		productos = new ArrayList<Producto>();
 	}
+	
 
 	@Override
 	public List<Producto> obtenerProductos() {

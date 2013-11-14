@@ -8,7 +8,7 @@ function LoginController($scope, $http, $routeParams) {
 	$scope.password = null;
 
 	$scope.login = function() {
-		$http({method: 'POST', url: $scope.url + "/" + $scope.user}).
+		$http({method: 'POST', url: $scope.url + "/" + $scope.user, data: $scope.password, headers : {'Content-Type': 'text/plain'}}).
 	      success(function(status) {
 	    	  alert("Bienvenido a Ticket Monster: " + $scope.user + "Token: " + status);
 	    	  console.info(status);
