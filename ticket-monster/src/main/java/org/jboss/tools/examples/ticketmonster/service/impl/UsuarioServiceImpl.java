@@ -1,19 +1,17 @@
 package org.jboss.tools.examples.ticketmonster.service.impl;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
-import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import org.jboss.tools.examples.ticketmonster.exceptions.BusinessException;
 import org.jboss.tools.examples.ticketmonster.exceptions.TechnicalException;
 import org.jboss.tools.examples.ticketmonster.model.Usuario;
+import org.jboss.tools.examples.ticketmonster.service.SecurityContext;
 import org.jboss.tools.examples.ticketmonster.service.UsuarioService;
 
 @Stateless
@@ -35,23 +33,33 @@ public class UsuarioServiceImpl implements UsuarioService {
 		}
 
 	}
+	
+	@Inject 
+	private SecurityContext sc;
 
 	@Override
-	public String login(String email, String password) {
-		return new Date().getTime()+"";
+	public String login(String email, String password) throws BusinessException{
+		
+		Usuario u = this.obtenerUsuario(email);
+		if (!u.getContrasenia().equals(password)) {
+			throw new BusinessException("El usuario o contraseña es invalida");
+		}
+		String ret = sc.createToken(email);
+		return ret;
+	}
+
+	@Override
+	public void logout(String token)  throws BusinessException {
+		if (!this.isLoged(token))
+			throw new BusinessException("No existe sessión para el token "+token);
+		sc.invalidateToken(token);
 		
 	}
 
 	@Override
-	public void logout(String email) {
-		// TODO Auto-generated method stub
+	public boolean isLoged(String token) {
 		
-	}
-
-	@Override
-	public boolean isLoged(String email) {
-		// TODO Auto-generated method stub
-		return false;
+		return (sc.getUserToken(token)!=null);
 	}
 
 	@Override

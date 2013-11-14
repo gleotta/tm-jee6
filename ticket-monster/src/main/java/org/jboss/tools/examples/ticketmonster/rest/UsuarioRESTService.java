@@ -13,9 +13,16 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Application;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.SecurityContext;
+
+
+
 
 import org.jboss.tools.examples.ticketmonster.exceptions.BusinessException;
 import org.jboss.tools.examples.ticketmonster.model.Usuario;
@@ -28,6 +35,7 @@ public class UsuarioRESTService {
 	@Inject
     private Logger log;
 	
+	@Context SecurityContext uri;
 	@Inject 
 	private UsuarioService usuarioService;
 	
@@ -35,6 +43,7 @@ public class UsuarioRESTService {
 	@Path("/get/{username}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Usuario obtenerUsuario(@PathParam("username") String username) {
+		
 		try {
 			Usuario ret = usuarioService.obtenerUsuario(username);
 			if (ret==null) {
@@ -50,11 +59,12 @@ public class UsuarioRESTService {
 	}
 	
 	@GET
-	@Path("/isLoged/{username}")
+	@Path("/isLoged")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Boolean isLoged(@PathParam("username") String username) {
+	public Boolean isLoged() {
 		try {
-			return usuarioService.isLoged(username);
+			String token = header.getRequestHeaders().getFirst("token");
+			return usuarioService.isLoged(token);
 		} catch (Exception e) {
 			Response r = Response.serverError().entity(e.getMessage()).build();
 			throw new WebApplicationException(r);
@@ -88,11 +98,15 @@ public class UsuarioRESTService {
 		}
 	}
 
+	
+	@Context HttpHeaders header;
+	
 	@POST
-	@Path("/logout/{username}")
-	public void logout(@PathParam("username") String username) {
+	@Path("/logout")
+	public void logout() {
 		try {
-			usuarioService.logout(username);
+			String token = header.getRequestHeaders().getFirst("token");
+			usuarioService.logout(token);
 		} catch (Exception e) {
 			log.severe(e.getMessage());
 			Response r = Response.serverError().entity(e.getMessage()).build();

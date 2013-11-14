@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
@@ -17,12 +18,16 @@ import org.jboss.tools.examples.ticketmonster.service.UsuarioService;
 
 public class CompraServiceImpl implements CompraService{
 
-	@Inject ProductosService productoService;
+	@Inject 
+	private ProductosService productoService;
 	
-	@Inject UsuarioService usuarioService;
+	@Inject 
+	private UsuarioService usuarioService;
 	
-	@Inject EntityManager entityManager;
-
+	@Inject 
+	private EntityManager entityManager;
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Compra> obtenerCompras() {

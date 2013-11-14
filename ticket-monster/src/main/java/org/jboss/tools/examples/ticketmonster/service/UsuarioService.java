@@ -9,11 +9,11 @@ public interface UsuarioService {
 	
 	public void registrarUsuario(Usuario u) throws BusinessException;
 	
-	public String login(String username, String password);
+	public String login(String username, String password) throws BusinessException;
 	
-	public void logout(String username);
+	public void logout(String token) throws BusinessException ;
 		
-	public boolean isLoged(String username);
+	public boolean isLoged(String token);
 	
 	public Usuario obtenerUsuario(String username);
 	

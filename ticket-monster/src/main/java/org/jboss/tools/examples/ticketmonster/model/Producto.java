@@ -12,32 +12,40 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
+import org.codehaus.jackson.annotate.JsonSubTypes;
+import org.codehaus.jackson.annotate.JsonTypeInfo;
 import org.hibernate.annotations.NaturalId;
+
+
+//@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.WRAPPER_OBJECT, property = "@id")
+//@JsonSubTypes({ @JsonSubTypes.Type(value = Disco.class, name = "DiscoClass") })
+
 
 @Entity
 @Table(name="PRODUCTO")
 @Inheritance(strategy=InheritanceType.JOINED)
+@JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 public abstract class Producto {
 	
 	@Id
 	@GeneratedValue
-	private Long id;
+	protected Long id;
 	
 	@NaturalId
-	private String codigo;
+	protected String codigo;
 	
-	private String descripcion;
+	protected String descripcion;
 	
 	@NotNull
-	private String titulo; 
+	protected String titulo; 
 	
 	
-	private String imagen;
+	protected String imagen;
 	
 	@NotNull
 	@Digits(integer=6, fraction=2)
 	@DecimalMin("0.01")
-	private BigDecimal precio;
+	protected BigDecimal precio;
 
 	public BigDecimal getPrecio() {
 		return precio;
