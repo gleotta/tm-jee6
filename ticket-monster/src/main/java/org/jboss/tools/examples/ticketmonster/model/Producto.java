@@ -17,14 +17,10 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 import org.hibernate.annotations.NaturalId;
 
 
-//@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.WRAPPER_OBJECT, property = "@id")
-//@JsonSubTypes({ @JsonSubTypes.Type(value = Disco.class, name = "DiscoClass") })
-
 
 @Entity
 @Table(name="PRODUCTO")
 @Inheritance(strategy=InheritanceType.JOINED)
-@JsonTypeInfo(use=JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
 public abstract class Producto {
 	
 	@Id

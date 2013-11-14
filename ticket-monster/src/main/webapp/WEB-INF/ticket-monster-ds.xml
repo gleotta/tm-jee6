@@ -38,10 +38,10 @@
         pool-name="ticket-monster" enabled="true"
         use-java-context="true">                
          <connection-url>jdbc:mysql://localhost:3306/ticket-monster</connection-url>
-                    <driver>mysql-connector-java-5.1.12-bin.jar</driver>
+                    <driver>mysql-connector-java-5.1.26-bin.jar</driver>
                     <security>
                         <user-name>root</user-name>
-                        <password>german</password>
+                        <password>cuyum123</password>
                     </security>
                     <validation>
                         <check-valid-connection-sql>SELECT 1</check-valid-connection-sql>

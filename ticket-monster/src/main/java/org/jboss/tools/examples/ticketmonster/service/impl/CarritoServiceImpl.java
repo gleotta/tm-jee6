@@ -3,12 +3,15 @@ package org.jboss.tools.examples.ticketmonster.service.impl;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.ejb.Stateful;
+
 import org.jboss.tools.examples.ticketmonster.exceptions.BusinessException;
 import org.jboss.tools.examples.ticketmonster.model.Compra;
 import org.jboss.tools.examples.ticketmonster.model.Producto;
 import org.jboss.tools.examples.ticketmonster.model.Usuario;
 import org.jboss.tools.examples.ticketmonster.service.CarritoService;
 
+@Stateful
 public class CarritoServiceImpl implements CarritoService {
 
 	public CarritoServiceImpl() {

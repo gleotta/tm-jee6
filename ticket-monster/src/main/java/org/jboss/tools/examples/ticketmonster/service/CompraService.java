@@ -1,6 +1,5 @@
 package org.jboss.tools.examples.ticketmonster.service;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.jboss.tools.examples.ticketmonster.exceptions.BusinessException;
@@ -14,7 +13,7 @@ public interface CompraService {
 	
 	public List<Compra> obtenerComprasProducto(String codigoProd);
 	
-	public void crearCompra(String username, String producto, BigDecimal monto) throws BusinessException;
+	public void crearCompra(String username, String producto) throws BusinessException;
 	
 	public void crearCompra(Compra c) throws BusinessException;
 
