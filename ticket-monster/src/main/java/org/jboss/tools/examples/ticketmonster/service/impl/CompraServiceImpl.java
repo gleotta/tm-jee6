@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
@@ -15,14 +17,19 @@ import org.jboss.tools.examples.ticketmonster.service.CompraService;
 import org.jboss.tools.examples.ticketmonster.service.ProductosService;
 import org.jboss.tools.examples.ticketmonster.service.UsuarioService;
 
+@Stateless
 public class CompraServiceImpl implements CompraService{
 
-	@Inject ProductosService productoService;
+	@Inject 
+	private ProductosService productoService;
 	
-	@Inject UsuarioService usuarioService;
+	@Inject 
+	private UsuarioService usuarioService;
 	
-	@Inject EntityManager entityManager;
-
+	@Inject 
+	private EntityManager entityManager;
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Compra> obtenerCompras() {
@@ -52,7 +59,7 @@ public class CompraServiceImpl implements CompraService{
 	}
 
 	@Override
-	public void crearCompra(String username, String producto, BigDecimal monto)
+	public void crearCompra(String username, String producto)
 			throws BusinessException {
 		Usuario usuario = usuarioService.obtenerUsuario(username);
 		if (usuario==null) {
@@ -67,7 +74,7 @@ public class CompraServiceImpl implements CompraService{
 		Compra compra = new Compra();
 		compra.setUsuario(usuario);
 		compra.setProducto(p);
-		compra.setMonto(monto);
+		compra.setMonto(p.getPrecio());
 		compra.setFecha(new Date());
 		
 		
