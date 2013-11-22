@@ -15,7 +15,7 @@ public interface UsuarioService {
 		
 	public boolean isLoged(String token);
 	
-	public Usuario obtenerUsuario(String username);
+	public Usuario obtenerUsuario(String email);
 	
 	public List<Usuario> obtenerUsarios();
 	

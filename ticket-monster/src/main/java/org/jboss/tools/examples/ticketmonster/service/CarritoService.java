@@ -2,6 +2,7 @@ package org.jboss.tools.examples.ticketmonster.service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 import org.jboss.tools.examples.ticketmonster.exceptions.BusinessException;
 import org.jboss.tools.examples.ticketmonster.model.Compra;
@@ -10,23 +11,25 @@ import org.jboss.tools.examples.ticketmonster.model.Usuario;
 
 public interface CarritoService {
 	
-	public List<Producto> obtenerProductos();
+	public void iniciarCarrito(String token);
 	
-	public void agregarProducto(String codigoProducto, Integer cantidad) throws BusinessException;
+	public Set<String> obtenerProductos();
 	
-	public void modificarCantidadProducto(String codigoProducto, Integer cantidad) throws BusinessException;
-	
+	public void agregarProducto(String codigoProducto) throws BusinessException;
+			
 	public void eliminarProducto(String codigoProducto) throws BusinessException;
 	
-	public Integer obtenerCantidadProducto(String codigoProducto);
+	public void vaciarCarrito() throws BusinessException;
+
+//	public BigDecimal obtenerMonto();
+//	
+//	public Usuario obtenerUsuario();
 	
-	public BigDecimal obtenerMonto();
+	public String obtenerIdCarrito();
 	
-	public Usuario obtenerUsuario();
+	public BigDecimal pagar() throws BusinessException;
 	
-	public Long obtenerIdCarrito();
 	
-	public List<Compra> pagar() throws BusinessException;
 	
 	
 
