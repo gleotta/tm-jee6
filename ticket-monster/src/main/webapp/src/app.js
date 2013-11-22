@@ -6,22 +6,13 @@ angular.module('app', []).
   
   $routes.
   
-  	 
-      when('/dashboard', {
-          templateUrl: 'src/views/dashboard.html',
-          controller: DashboardController
-          }).
-          
       when('/productList', {
           templateUrl: 'src/views/productList.html',
           controller: ProductListController
           }).
-          
-          
-    
-          
+         
       //cualquier ruta no definida
       otherwise({
-          redirectTo: '/dashboard'});
+          redirectTo: '/productList'});
  
 }]);
